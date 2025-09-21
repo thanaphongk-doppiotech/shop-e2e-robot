@@ -1,0 +1,43 @@
+common:
+  app_title:
+    en: Doppee Shop
+    th: โดปปั้ ช็อป
+
+search:
+  mug:
+    en: mug
+  ceramic_mug:
+    en: Ceramic Mug
+
+header:
+  thai:
+    en: Thai
+    th: ไทย
+
+cart:
+  tick_all:
+    en: Select all
+    th: เลือกทั้งหมด
+  sub_total:
+    en: Subtotal
+    th: ยอดรวม
+  shipping:
+    en: Shipping
+    th: ค่าจัดส่ง
+  VAT:
+    en: VAT (7%)
+    th: VAT (7%)
+  discount:
+    en: discount
+    th: ส่วนลด
+  total:
+    en: Total
+    th: รวม
+  coupon:
+    en: Coupon
+    th: คูปอง
+
+notifications:
+  added_to_cart:
+    en: Added to cart
+    th: เพิ่มลงตะกร้าแล้ว

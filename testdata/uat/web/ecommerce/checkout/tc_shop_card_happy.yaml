@@ -1,0 +1,41 @@
+user:
+  email: trainee+${RANDOM}@example.com
+  password: P@ssw0rd123
+  full_name:  Geng Manual
+  mobile_phone: 0800100001
+
+test_user:
+  email: trainee+1758389149@example.com
+  password: P@ssw0rd123
+  full_name:  Geng Manual
+  mobile_phone: 0800100001
+
+lbl_random: '${RANDOM}'
+
+products:
+  ceramic_mug:
+    query: mug
+    name: Ceramic Mug
+    color: White
+    qty: 3
+  
+  keyboard:
+    query: keyboard
+    name: Mechanical Keyboard
+    qty: 2
+ 
+coupon: General12345
+
+payment:
+  card_number: 5555 5555 5555 4444
+  cvv:  123
+  exp: 12/29
+  card_holder_name: Geng Manual
+
+address:
+  fname:  Geng
+  lname:  Manual
+  addr_no:  123/456 QA village
+  province: Bangkok
+  district: Pathum Wan
+  subdistrict:  Lumphini
