@@ -39,6 +39,6 @@ Go to cart page
 
 Wait for notification disappear
 
-    ${passed} = 	Run Keyword And Return Status 	Browser.Wait For Elements State     ${header.notification}  visible     timeout=${LONG_TIMEOUT}
+    ${passed} = 	Run Keyword And Return Status 	Browser.Wait For Elements State     ${header.notification}  visible     timeout=${SHORT_TIMEOUT}
     Run Keyword If 	${passed} 	Browser.Wait For Elements State     ${header.notification}  detached     timeout=${LONG_TIMEOUT}
     
