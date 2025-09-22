@@ -47,13 +47,27 @@ Buy mug and keyboard with card
 
 Buy random products with qr
     [Arguments]    ${coupon}
-    # Example approach: iterate N products on current list and add 1 each
-    ${cards}=    Get Elements    ${header.suggested_cards}
-    FOR    ${i}    IN RANGE    0    2
-        Click    ${cards}[${i}] >> ${pdp.btn_add}
-    END
-    Go to checkout and tick all
-    Verify price calculation
-    Apply coupon    ${coupon}
-    Pay by qr code
-    Go to orders and verify latest
+
+    home_page.Try to add random product until success  3
+
+    header_page.Change language to thai
+
+    home_page.Try to add random product until success  2
+
+    header_page.Go to cart page
+    cart_page.Click select all checkbox
+    cart_page.Apply coupon  ${coupon}
+    cart_page.Verify price calculation
+    ${total}=  cart_page.Get price from price break down word  ${cart.total.${LOCALE}}
+    cart_page.Proceed to checkout page
+
+    checkout_page.Add new address  ${address.fname}  ${address.lname}  ${address.addr_no}
+    ...     ${address.province}  ${address.district}  ${address.subdistrict}
+    checkout_page.Select QR code payment method
+    checkout_page.Place order
+
+    order_comfirm_page.Click QR paid button
+    ${order_no}=  order_comfirm_page.Get order number
+    order_comfirm_page.Go to my order page
+
+    my_order_page.Verify total price by order number  ${order_no}  ${total}

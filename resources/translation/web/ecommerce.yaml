@@ -41,3 +41,18 @@ notifications:
   added_to_cart:
     en: Added to cart
     th: เพิ่มลงตะกร้าแล้ว
+
+button:
+  text:
+    out_of_stock:
+      en: Out of stock
+      th: สินค้าหมด
+
+product:
+  variant:
+    color:
+      en: Color
+      th: Color
+    size:
+      en: Size
+      th: Size

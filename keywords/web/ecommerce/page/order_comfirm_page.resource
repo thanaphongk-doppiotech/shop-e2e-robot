@@ -6,3 +6,6 @@ Get order number
 
 Go to my order page
     common.Wait element visible then click  ${order_cf.btn_view_my_order}
+
+Click QR paid button
+    common.Wait element visible then click  ${order_cf.paid_success}

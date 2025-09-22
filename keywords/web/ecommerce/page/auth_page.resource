@@ -19,11 +19,8 @@ Sign up with generated email and password
 
 Login with email and password
     [Arguments]    ${email}    ${password}
-    # TODO: implement real locators/steps
-    # Click    ${auth.link_login}
-    # Fill Text    ${auth.input_email}    ${email}
-    # Fill Text    ${auth.input_password} ${password}
-    # Click    ${auth.btn_submit}
+
     common.Wait element visible then input  ${auth.input_email}  ${email}
     common.Wait element visible then input  ${auth.input_password}  ${password}
     common.Wait element visible then click  ${auth.btn_sign_in}
+    common.Short sleep

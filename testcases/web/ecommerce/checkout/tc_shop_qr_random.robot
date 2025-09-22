@@ -1,6 +1,8 @@
 *** Settings ***
 Documentation    TC_UI:TC10002 - Random products + QR payment
-Resource         ../../../resources/import/common_import.resource
+Resource        ../../../../resources/import/common_import.resource
+Test Setup      common.Open website
+Test Teardown   common.Test Teardown
 
 *** Test Cases ***
 TC_UI:TC10002 - Verify QR checkout with random pick

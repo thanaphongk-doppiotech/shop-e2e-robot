@@ -2,6 +2,7 @@
 
 Go to home page
     common.Wait element visible then click  ${header.a_doppee_logo}
+    Browser.Wait For Load State
 
 Go to signin page
     common.Wait element visible then click  ${header.btn_my_account}
@@ -37,5 +38,7 @@ Go to cart page
     Browser.Click   ${header.btn_cart}
 
 Wait for notification disappear
-    Browser.Wait For Elements State     ${header.notification}  visible     timeout=${LONG_TIMEOUT}
-    Browser.Wait For Elements State     ${header.notification}  detached     timeout=${LONG_TIMEOUT}
+
+    ${passed} = 	Run Keyword And Return Status 	Browser.Wait For Elements State     ${header.notification}  visible     timeout=${LONG_TIMEOUT}
+    Run Keyword If 	${passed} 	Browser.Wait For Elements State     ${header.notification}  detached     timeout=${LONG_TIMEOUT}
+    
