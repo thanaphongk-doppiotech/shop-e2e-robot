@@ -10,7 +10,7 @@ Buy mug and keyboard with card
     ...     ${keyboard_query}  ${keyboard_name}  ${keyboard_qty}  ${coupon}
 
     # Go to home page, verify 8 suggest product
-    header_page.Go to home page
+    header_page.Click doppee logo to go homepage
     home_page.Verify suggested products are 8
 
     # Search mug and click autocomplete

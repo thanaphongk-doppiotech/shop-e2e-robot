@@ -34,6 +34,6 @@ Try to add random product until success
 
 Add random one suggest product from home page
     [Arguments]     ${qty}
-    header_page.Go to home page
+    header_page.Click doppee logo to go homepage
     home_page.Click on suggest product by random index
     product_detail_page.Add product given quantity  ${qty}
