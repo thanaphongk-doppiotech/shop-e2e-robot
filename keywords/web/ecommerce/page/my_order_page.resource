@@ -1,7 +1,7 @@
 *** Keywords ***
 Verify total price of order number is match
     [Arguments]     ${order_no}  ${expect_total_price}
-
+    # div:has( > div >  div:has-text("#505")) > div > div:has-text("783.00")
 
 # Fix me
 Verify total price by order number
