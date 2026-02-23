@@ -4,7 +4,7 @@ Change language
     [Arguments]     ${language}
     header_page.Click language button
     ${locator}=         String.Replace string    string=${header_locator.btn_language_by_text}                          search_for=@#string@#    replace_with=${language}
-    Browser.Click       search=${locator}
+    Browser.Click       selector=${locator}
     BuiltIn.Set test variable    ${LOCALE}      ${language}
 
 Input search and click on suggest word

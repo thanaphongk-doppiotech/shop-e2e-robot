@@ -6,6 +6,7 @@ Login with email and password
     auth_page.Input password    password=${password}
     auth_page.Select remember me checkbox
     auth_page.Click signin button
+    notification_page.Click close notification button
 
 Sign up with account data
     [Arguments]     ${full_name}    ${mobile_number}    ${email}    ${password}
