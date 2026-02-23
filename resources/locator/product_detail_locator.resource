@@ -1,5 +1,6 @@
 *** Variables ***
 ${product_detail_locator.btn_increase_qty}          css=[data-testid="pd-qty-inc"]
+${product_detail_locator.txt_product_price}         css=[data-testid="productdetail-price"]
 ${product_detail_locator.txt_quantity}              css=[data-testid="pd-qty-input"]
 ${product_detail_locator.ddl_color}                 css=select.color
 ${product_detail_locator.btn_add_to_cart}           css=[data-testid="pd-add-to-cart"]

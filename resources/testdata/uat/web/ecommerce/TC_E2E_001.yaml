@@ -26,11 +26,11 @@ TC_E2E_001:
     card_number: 5555 5555 5555 4444
     cvv:  123
     exp: 12/29
-    card_holder_name: Geng Manual
+    card_holder_name: Geng Browser
   address:
     fname:  Geng
-    lname:  Manual
+    lname:  Browser
     addr_no:  123/456 QA village
-    province: Bangkok
-    district: Pathum Wan
-    subdistrict:  Lumphini
+    province: กรุงเทพมหานคร
+    district: ปทุมวัน
+    subdistrict:  ลุมพินี

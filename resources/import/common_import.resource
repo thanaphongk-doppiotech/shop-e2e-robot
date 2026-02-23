@@ -23,6 +23,7 @@ Resource    ${CURDIR}/../../keywords/web/ecommerce/feature/header_feature.robot
 Resource    ${CURDIR}/../../keywords/web/ecommerce/feature/purchase_feature.resource
 Resource    ${CURDIR}/../../keywords/web/ecommerce/feature/login_feature.robot
 Resource    ${CURDIR}/../../keywords/web/ecommerce/feature/product_detail_feature.robot
+Resource    ${CURDIR}/../../keywords/web/ecommerce/feature/checkout_feature.robot
 
 # Setting
 Resource    ${CURDIR}/../settings/web_settings.resource

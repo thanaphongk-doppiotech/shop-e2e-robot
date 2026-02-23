@@ -10,7 +10,7 @@ Test teardown
     Browser.Close browser
 
 Get generated email
-    ${time}                 BuiltIn.Get time    format=epoch
+    ${time}                 BuiltIn.Get time        format=epoch
     ${generated_email}      BuiltIn.Set variable    thanaphong.k+${time}@doppiotech.com
     RETURN      ${generated_email}
 
@@ -29,7 +29,7 @@ Format baht currency to number
     ...                 Returns:
     ...                     - ${number_value}  (number):   The number that was formatted (e.g., 1890.00)
     [Arguments]     ${currency_text}
-    ${cleaned_text}     String.Remove string    ${currency_text}    ฿       ,       ${SPACE}
+    ${cleaned_text}     String.Remove string    ${currency_text}    THB       ,       ${SPACE}    \xa0
     ${number_value}     BuiltIn.Convert to number    item=${cleaned_text}
     RETURN          ${number_value}
 

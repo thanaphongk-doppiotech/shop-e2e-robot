@@ -46,7 +46,7 @@ Buy mug and keyboard with card
     checkout_page.Place order
 
     ${order_no}=  order_comfirm_page.Get order number
-    order_comfirm_page.Go to my order page
+    order_comfirm_page.Click view my order button
 
     # compare total price from cart vs my order
     my_order_page.Verify total price by order number  ${order_no}  ${total}
@@ -79,7 +79,7 @@ Buy random products with qr
 
     order_comfirm_page.Click QR paid button
     ${order_no}=  order_comfirm_page.Get order number
-    order_comfirm_page.Go to my order page
+    order_comfirm_page.Click view my order button
 
     # compare total price from cart vs my order
     my_order_page.Verify total price by order number  ${order_no}  ${total}

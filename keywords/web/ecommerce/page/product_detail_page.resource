@@ -2,6 +2,12 @@
 Click increase quantity button
     Browser.Click       selector=${product_detail_locator.btn_increase_qty}
 
+Get product price
+    ${product_price_text}    Browser.Get text    selector=${product_detail_locator.txt_product_price}
+    ${product_price_formatted}    common.Format baht currency to number    currency_text=${product_price_text}
+    ${product_price}    BuiltIn.Convert to number    item=${product_price_formatted}
+    RETURN      ${product_price}
+
 Get product quantity
     [Documentation]     Get current product quantity amount
     ...                 Returns:

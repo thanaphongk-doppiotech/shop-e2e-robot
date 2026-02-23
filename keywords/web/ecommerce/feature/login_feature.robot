@@ -18,3 +18,4 @@ Sign up with account data
     signup_page.Input password    password=${password}
     signup_page.Input confirm password    confirm_password=${password}
     signup_page.Click create account button
+    header_page.Click doppee logo to go homepage

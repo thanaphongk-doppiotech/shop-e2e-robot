@@ -1,5 +1,9 @@
 *** Keywords ***
+Verify total price of order number is match
+    [Arguments]     ${order_no}  ${expect_total_price}
 
+
+# Fix me
 Verify total price by order number
     [Arguments]     ${order_no}  ${expect_total_price}
     ${total_price_locator}=     String.Replace String   ${my_order_locator.lbl_total_price}  ${REPLACE_TEXT}  ${order_no}

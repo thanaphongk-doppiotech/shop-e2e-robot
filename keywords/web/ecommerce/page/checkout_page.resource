@@ -1,45 +1,64 @@
 *** Keywords ***
+Click add new address button
+    Browser.Click       selector=${checkout_locator.btn_add_address}
 
-Add new address
-    [Arguments]     ${fname}  ${lname}  ${addr_no}  ${province}  ${district}  ${subdistrict}
+Input first name
+    [Arguments]     ${first_name}
+    Browser.Fill text       selector=${checkout_locator.txt_first_name}    txt=${first_name}
 
-    common.Wait element visible then click  ${checkout_locator.btn_add_address}
-    common.Wait page contain element then scroll to  ${checkout_locator.btn_save_addr}
+Input last name
+    [Arguments]     ${last_name}
+    Browser.Fill text       selector=${checkout_locator.txt_last_name}    txt=${last_name}
 
-    common.Wait element visible then input  ${checkout_locator.input_fname}  ${fname}
-    common.Wait element visible then input  ${checkout_locator.input_lname}  ${lname}
-    common.Wait element visible then input  ${checkout_locator.input_addr_detail}  ${addr_no}
+Input address detail
+    [Arguments]     ${address_detail}
+    Browser.Fill text       selector=${checkout_locator.txt_address_detail}    txt=${address_detail}
 
-    common.Wait element visible then select option by value  ${checkout_locator.ddl_province}  ${province}
-    common.Wait element visible then select option by value  ${checkout_locator.ddl_district}  ${district}
-    common.Wait element visible then select option by value  ${checkout_locator.ddl_sub_disctrict}  ${subdistrict}
+Select province by province name
+    [Arguments]     ${province_name}
+    Browser.Select options by    ${checkout_locator.ddl_province}           text                    ${province_name}
 
-    Browser.Get Text    ${checkout_locator.input_postcode}  !=  ${EMPTY}
+Select district by district name
+    [Arguments]     ${district_name}
+    Browser.Select options by    ${checkout_locator.ddl_district}           text                    ${district_name}
 
-    common.Wait element visible then click  ${checkout_locator.btn_save_addr}
+Select subdistrict by subdistrict name
+    [Arguments]     ${subdistrict_name}
+    Browser.Select options by    ${checkout_locator.ddl_sub_disctrict}      text                    ${subdistrict_name}
 
-Add new credit card
-    [Arguments]    ${card_number}  ${exp}  ${cvv}  ${card_holder_name}
-    common.Wait page contain element then scroll to  ${checkout_locator.tab_card}
-    Browser.Click    ${checkout_locator.tab_card}
-    common.Wait element visible then input  ${checkout_locator.input_card_number}    ${card_number}
-    common.Wait element visible then input  ${checkout_locator.input_card_exp}    ${exp}
-    common.Wait element visible then input  ${checkout_locator.input_card_cvv}    ${cvv}
-    common.Wait element visible then input  ${checkout_locator.input_card_holder_name}    ${card_holder_name}
-    common.Wait element visible then click  ${checkout_locator.btn_add_new_card}
+Select default address checkbox
+    Browser.Check checkbox    selector=${checkout_locator.chk_save_default}
 
-Select credit card payment method
-    common.Wait page contain element then scroll to  ${checkout_locator.tab_card}
-    Browser.Click    ${checkout_locator.tab_card}
+Click save address button
+    Browser.Click       selector=${checkout_locator.btn_save_addr}
 
-# Remove
-Select first saved card
-    common.Wait element visible then click  css=[data-testid="checkout-card-14"]
+Select pay by qr code
+    Browser.Hover       selector=${checkout_locator.rdo.qr_code}
+    Browser.Click       selector=${checkout_locator.rdo.qr_code}
 
-Select QR code payment method
-    common.Wait element visible then click  ${checkout_locator.tab_qr}
+Select pay by credit card
+    Browser.Hover       selector=${checkout_locator.rdo_credit_card}
+    Browser.Click       selector=${checkout_locator.rdo_credit_card}
 
-Place order
-    common.Wait page contain element then scroll to  ${checkout_locator.btn_pay}
-    common.Short sleep
-    common.Wait element visible then click  ${checkout_locator.btn_pay}
+Input credit card number
+    [Arguments]     ${credit_card_number}
+    Browser.Fill text       selector=${checkout_locator.txt_card_number}    txt=${credit_card_number}
+
+Input credit card expiry date
+    [Arguments]     ${credit_card_expire_date}
+    Browser.Fill text       selector=${checkout_locator.txt_card_exp}    txt=${credit_card_expire_date}
+
+Input credit card cvv
+    [Arguments]     ${credit_card_cvv}
+    Browser.Fill text       selector=${checkout_locator.txt_card_cvv}    txt=${credit_card_cvv}
+
+Input credit card holder name
+    [Arguments]     ${credit_card_holder_name}
+    Browser.Fill text       selector=${checkout_locator.txt_card_holder_name}    txt=${credit_card_holder_name}
+
+Click add new credit card button
+    Browser.Click       selector=${checkout_locator.btn_add_new_card}
+
+Click place order button
+    Browser.Hover       selector=${checkout_locator.btn_place_order}
+    Browser.Click       selector=${checkout_locator.btn_place_order}
