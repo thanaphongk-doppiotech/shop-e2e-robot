@@ -1,5 +1,4 @@
 *** Settings ***
-Documentation       TC_UI:TC10001 - Card checkout flow — Sign up, add mug+keyboard, coupon, pay by card
 Resource            ${CURDIR}/../../../resources/import/common_import.resource
 Variables           ${CURDIR}/../../../resources/testdata/uat/web/ecommerce/TC_E2E_001.yaml
 Test Setup          common.Open website
@@ -21,7 +20,7 @@ TC_E2E_001 - Verify new register customer can buy product successfully
     header_feature.Input search and click on suggest word           search_text=${TC_E2E_001.products.ceramic_mug.query}    suggest_text=${TC_E2E_001.products.ceramic_mug.name}
     # Step 4 – Add 3× Ceramic Mug to cart (select color)
     ${mug_price}            product_detail_page.Get product price
-    product_detail_feature.Click increase quantity button to add product by number    number=${TC_E2E_001.products.ceramic_mug.qty}
+    product_detail_feature.Adjust quantity by number    number=${TC_E2E_001.products.ceramic_mug.qty}
     product_detail_page.Select product color by color name    color_name=${TC_E2E_001.products.ceramic_mug.color}
     product_detail_page.Click add to cart button
     notification_page.Click close notification button
@@ -33,7 +32,7 @@ TC_E2E_001 - Verify new register customer can buy product successfully
     # Step 7 – Add 2× keyboard to cart
     product_detail_page.Click product name to view detail    product_name=${TC_E2E_001.products.keyboard.name}
     ${keyboard_price}       product_detail_page.Get product price
-    product_detail_feature.Click increase quantity button to add product by number    number=${TC_E2E_001.products.keyboard.qty}
+    product_detail_feature.Adjust quantity by number    number=${TC_E2E_001.products.keyboard.qty}
     product_detail_page.Select product color by color name    color_name=${TC_E2E_001.products.keyboard.color}
     product_detail_page.Click add to cart button
     notification_page.Click close notification button
@@ -70,5 +69,4 @@ TC_E2E_001 - Verify new register customer can buy product successfully
     # Step 11 – Open Orders page and verify order summary is correct
     order_comfirm_page.Click view my order button
     my_order_page.Verify total price of order number is match       order_id=${order_number}    expect_total_price=${expect_total_price}
-    # Extra Test – Repeat with random products and pay via QR Code
     debug

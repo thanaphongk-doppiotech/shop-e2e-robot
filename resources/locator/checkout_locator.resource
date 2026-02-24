@@ -18,6 +18,7 @@ ${checkout_locator.txt_card_cvv}            css=[data-testid="checkout-card-cvv"
 ${checkout_locator.txt_card_holder_name}    css=[data-testid="checkout-card-name"]
 ${checkout_locator.btn_add_new_card}        css=[data-testid="checkout-add-card"]
 ${checkout_locator.btn_place_order}         css=[data-testid="checkout-place-order"]
+${checkout_locator.rdo_address_elements}    css=li[data-testid^="checkout-address-"]
 
 # fix me
 ${checkout_locator.opt_replace}             css=[value="${REPLACE_TEXT}"]

@@ -20,3 +20,22 @@ Add new credit card
     checkout_page.Input credit card cvv    credit_card_cvv=${cvv}
     checkout_page.Input credit card holder name    credit_card_holder_name=${card_holder_name}
     checkout_page.Click add new credit card button
+
+Verify address is empty
+    ${product_elements}     Browser.Get elements    selector=${cart_locator.btn_remove_elements}
+    ${product_elements_length}    BuiltIn.Get length    item=${product_elements}
+    ${is_address_empty}     Builtin.Evaluate        ${product_elements_length} < 1
+    RETURN      ${is_address_empty}
+
+Add new address if empty
+    [Arguments]     ${first_name}       ${last_name}    ${addr_no}      ${province}     ${district}     ${subdistrict}      ${is_default_addr}=${TRUE}
+    ${is_address_empty}     checkout_feature.Verify address is empty
+    BuiltIn.Return from keyword if    ${is_address_empty}
+    checkout_feature.Add new address
+    ...     first_name=${first_name}
+    ...     last_name=${last_name}
+    ...     addr_no=${addr_no}
+    ...     province=${province}
+    ...     district=${district}
+    ...     subdistrict=${subdistrict}
+    ...     is_default_addr=${is_default_addr}

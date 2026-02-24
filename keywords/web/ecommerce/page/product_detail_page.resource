@@ -2,6 +2,9 @@
 Click increase quantity button
     Browser.Click       selector=${product_detail_locator.btn_increase_qty}
 
+Click decrease quantity button
+    Browser.Click       selector=${product_detail_locator.btn_decrease_qty}
+
 Get product price
     ${product_price_text}    Browser.Get text    selector=${product_detail_locator.txt_product_price}
     ${product_price_formatted}    common.Format baht currency to number    currency_text=${product_price_text}
@@ -20,7 +23,23 @@ Select product color by color name
     ...                 Arguments:
     ...                     -   ${color_name}   (string)    :   The color name to be selected (e.g., White)
     [Arguments]     ${color_name}
-    ${locator}          String.Replace string    string=${product_detail_locator.btn_color_by_name}                     search_for=@#string@#    replace_with=${color_name}
+    ${locator}          String.Replace string    string=${product_detail_locator.opt_color_by_name}                     search_for=@#string@#    replace_with=${color_name}
+    Browser.Click       selector=${locator}
+
+Select product color by index
+    [Arguments]     ${index}=0
+    ${locator}          String.Replace string
+    ...                 string=${product_detail_locator.opt_color_by_index}
+    ...                 search_for=@#index@#
+    ...                 replace_with=${index}
+    Browser.Click       selector=${locator}
+
+Select product size by index
+    [Arguments]     ${index}=0
+    ${locator}          String.Replace string
+    ...                 string=${product_detail_locator.opt_size_by_index}
+    ...                 search_for=@#index@#
+    ...                 replace_with=${index}
     Browser.Click       selector=${locator}
 
 Click add to cart button
@@ -32,6 +51,14 @@ Click product name to view detail
     ${locator}          String.Replace string    string=${product_detail_locator.lnk_product_by_name}                   search_for=@#string@#    replace_with=${product_name}
     Browser.Hover       selector=${locator}
     Browser.Click       selector=${locator}
+
+Verify out of stock button is display
+    ${locator}              String.Replace string
+    ...                     string=${product_detail_locator.btn_out_of_stock}
+    ...                     search_for=@#string_locale@#
+    ...                     replace_with=${translation.button.text.out_of_stock.${LOCALE}}
+    ${is_out_of_stock}      Run keyword and return status    Browser.Wait for elements state        selector=${locator}     state=visible
+    RETURN      ${is_out_of_stock}
 
 # Fix me
 Add product with color and quantity
@@ -48,9 +75,6 @@ Add product with color and quantity
 Add quantity
     [Arguments]     ${qty}
     common.Wait element visible then input    ${product_detail_locator.qty_input}    ${qty}
-
-Click add to cart
-    common.Wait element visible then click    ${product_detail_locator.btn_add}
 
 Add product given quantity
     [Arguments]     ${qty}=1
@@ -94,8 +118,3 @@ Verify product added to card successfully
     ${locator}=     String.Replace string    ${product_detail_locator.notification_msg}             ${REPLACE_TEXT}    ${notifications.added_to_cart.${LOCALE}}
     Browser.Wait for elements state                 ${locator}      timeout=${LONG_TIMEOUT}
     # Browser.Get Element States      ${locator}  contains    visible
-
-Verify is product out of stock
-    ${btn_text}=    common.Wait element visible then get text    ${product_detail_locator.btn_add}
-    BuiltIn.Should be equal    ${btn.text.out_of_stock${LOCALE}}    ${btn_text}     ignore_case=True    strip_spaces=True
-

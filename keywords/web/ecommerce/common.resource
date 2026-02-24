@@ -29,11 +29,16 @@ Format baht currency to number
     ...                 Returns:
     ...                     - ${number_value}  (number):   The number that was formatted (e.g., 1890.00)
     [Arguments]     ${currency_text}
-    ${cleaned_text}     String.Remove string    ${currency_text}    THB       ,       ${SPACE}    \xa0
+    ${cleaned_text}     String.Remove string    ${currency_text}    THB     ,       ${SPACE}    \xa0
     ${number_value}     BuiltIn.Convert to number    item=${cleaned_text}
     RETURN          ${number_value}
 
-Format number to baht currecy without comma
+Format number to currency
+    [Arguments]     ${number}               ${decimal_place}=2
+    ${formatted_number}=    BuiltIn.Evaluate    f"{float($number):,.{int($decimal_place)}f}"
+    RETURN          ${formatted_number}
+
+Format number to baht currency without comma
     [Documentation]     Formats a numeric value into a currency string format.
     ...                 This keyword rounds the input number to 2 decimal places and prepends
     ...                 the currency symbol (฿).
@@ -45,6 +50,11 @@ Format number to baht currecy without comma
     [Arguments]     ${number}               ${decimal_place}=2
     ${formatted_number}=    BuiltIn.Evaluate    "฿{:.${decimal_place}f}".format(float('${number}'))
     RETURN          ${formatted_number}
+
+Highlight elements
+    [Arguments]     ${locator}      ${duration}=${DEFAULT_HIGHLIGHT}
+    Browser.Highlight elements    selector=${locator}    duration=${duration}
+    BuiltIn.Sleep       time_=${duration}
 
 # not use
 Wait element visible then input
