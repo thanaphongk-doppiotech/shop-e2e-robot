@@ -1,44 +1,20 @@
 *** Keywords ***
+Click doppee logo to go homepage
+    Browser.Click       selector=${header_locator.btn_doppee_logo}
+    Browser.Wait for load state
 
-Go to home page
-    common.Wait element visible then click  ${header.a_doppee_logo}
-    Browser.Wait For Load State
+Click my account button
+    Browser.Click       selector=${header_locator.btn_my_account}
 
-Go to signin page
-    common.Wait element visible then click  ${header.btn_my_account}
-    common.Wait element visible then click  ${header.a_signin}
+Input search text
+    [Arguments]     ${text}
+    Browser.Fill text   selector=${header_locator.txt_search}     txt=${text}
 
-Partial search and select suggest word from autocomplete
-    [Documentation]    Type 'mug' and click 'Ceramic Mug' in autocomplete
-    [Arguments]     ${partial_word}     ${suggest_word}
-    common.Wait element visible then input  ${header.input_search}    ${partial_word}
-    Browser.Wait For Elements State    ${header.autocomplete_panel}    visible    ${LONG_TIMEOUT}
+Click search button
+    Browser.Click   selector=${header_locator.btn_search}
 
-    ${ac_value_locator}=    String.Replace String   ${header.autocomplete_value}  ${REPLACE_TEXT}  ${suggest_word} 
-    common.Wait element visible then click  ${ac_value_locator}
+Click cart button
+    Browser.Click   selector=${header_locator.btn_cart}
 
-Search keyword ignoring autocomplete
-    [Arguments]    ${query}
-    [Documentation]    Type query and press Enter to search (ignore autocomplete)
-    common.Wait element visible then input  ${header.input_search}    ${query}
-    common.Wait element visible then click  ${header.btn_search}
-    
-Change language to thai
-    [Documentation]    Switch UI language to Thai
-    common.Wait element visible then click  ${header.ddl_language}    
-    common.Wait element visible then click  ${header.opt_lang_thai}
-
-    BuiltIn.Log To Console  Current locale is ${LOCALE}
-    BuiltIn.Set Test Variable   ${LOCALE}   th
-    BuiltIn.Log To Console  Locale changed to ${LOCALE}
-
-Go to cart page
-    # common.Wait element visible then click  ${header.btn_cart}
-    header_page.Wait for notification disappear
-    Browser.Click   ${header.btn_cart}
-
-Wait for notification disappear
-
-    ${passed} = 	Run Keyword And Return Status 	Browser.Wait For Elements State     ${header.notification}  visible     timeout=${SHORT_TIMEOUT}
-    Run Keyword If 	${passed} 	Browser.Wait For Elements State     ${header.notification}  detached     timeout=${LONG_TIMEOUT}
-    
+Click language button
+    Browser.Click   selector=${header_locator.btn_language}

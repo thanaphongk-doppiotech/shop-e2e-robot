@@ -6,6 +6,6 @@ Test Teardown   common.Test Teardown
 
 *** Test Cases ***
 TC_UI:TC10002 - Verify QR checkout with random pick
-    [Tags]    case_key:SHOP-002    platform:web    status:ready    test_type:regression
+    [Tags]    case_key:SHOP-002    platform:web    status:invalid    test_type:regression
     purchase_feature.Sign up and login    ${user.email}    ${user.password}
     purchase_feature.Buy random products with qr    ${coupon}

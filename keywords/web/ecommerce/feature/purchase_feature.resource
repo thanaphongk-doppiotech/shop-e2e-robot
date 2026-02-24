@@ -4,13 +4,13 @@ Sign up and login
     header_page.Go to signin page
     auth_page.Sign up with generated email and password    ${email}    ${password}
     common.Short sleep
-    
+
 Buy mug and keyboard with card
     [Arguments]     ${mug_word}  ${mug_suggest_word}  ${mug_color}  ${mug_qty}
     ...     ${keyboard_query}  ${keyboard_name}  ${keyboard_qty}  ${coupon}
 
     # Go to home page, verify 8 suggest product
-    header_page.Go to home page
+    header_page.Click doppee logo to go homepage
     home_page.Verify suggested products are 8
 
     # Search mug and click autocomplete
@@ -35,18 +35,18 @@ Buy mug and keyboard with card
     cart_page.Click select all checkbox
     cart_page.Apply coupon  ${coupon}
     cart_page.Verify price calculation
-    ${total}=  cart_page.Get price from price break down word  ${cart.total.${LOCALE}}
+    ${total}=  cart_page.Get price from price break down word  ${cart_locator.total.${LOCALE}}
     cart_page.Proceed to checkout page
 
     # add new address and credit card
     checkout_page.Add new address  ${address.fname}  ${address.lname}  ${address.addr_no}
     ...     ${address.province}  ${address.district}  ${address.subdistrict}
     checkout_page.Add new credit card  ${payment.card_number}  ${payment.exp}  ${payment.cvv}  ${payment.card_holder_name}
- 
+
     checkout_page.Place order
 
     ${order_no}=  order_comfirm_page.Get order number
-    order_comfirm_page.Go to my order page
+    order_comfirm_page.Click view my order button
 
     # compare total price from cart vs my order
     my_order_page.Verify total price by order number  ${order_no}  ${total}
@@ -68,10 +68,10 @@ Buy random products with qr
     cart_page.Click select all checkbox
     cart_page.Apply coupon  ${coupon}
     cart_page.Verify price calculation
-    ${total}=  cart_page.Get price from price break down word  ${cart.total.${LOCALE}}
+    ${total}=  cart_page.Get price from price break down word  ${cart_locator.total.${LOCALE}}
     cart_page.Proceed to checkout page
 
-    # add new address and paid by QR 
+    # add new address and paid by QR
     checkout_page.Add new address  ${address.fname}  ${address.lname}  ${address.addr_no}
     ...     ${address.province}  ${address.district}  ${address.subdistrict}
     checkout_page.Select QR code payment method
@@ -79,7 +79,7 @@ Buy random products with qr
 
     order_comfirm_page.Click QR paid button
     ${order_no}=  order_comfirm_page.Get order number
-    order_comfirm_page.Go to my order page
+    order_comfirm_page.Click view my order button
 
     # compare total price from cart vs my order
     my_order_page.Verify total price by order number  ${order_no}  ${total}

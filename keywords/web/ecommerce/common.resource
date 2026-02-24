@@ -2,42 +2,90 @@
 
 Open website
     [Documentation]    Open base URL and ensure home is visible
-    Browser.New Browser     headless=${HEADLESS}    slowMo=${DELAY}
-    Browser.New Context     locale=${LOCALE}
-    Browser.New Page        ${BASE_URL}
+    Browser.New browser     headless=${HEADLESS}    slowMo=${DELAY}
+    Browser.New context     locale=${LOCALE_EN}
+    Browser.New page        ${LOCAL_URL}
 
-Test Teardown
+Test teardown
     Browser.Close browser
 
+Get generated email
+    ${time}                 BuiltIn.Get time        format=epoch
+    ${generated_email}      BuiltIn.Set variable    thanaphong.k+${time}@doppiotech.com
+    RETURN      ${generated_email}
+
+Get random mobile number
+    ${prefix_list}      BuiltIn.Create list     06      08      09
+    ${prefix}=          BuiltIn.Evaluate        random.choice(${prefix_list})    random
+    ${number}           String.Generate random string    length=8    chars=[NUMBERS]
+    ${random_mobile_number}    BuiltIn.Set variable    ${prefix}${number}
+    RETURN      ${random_mobile_number}
+
+Format baht currency to number
+    [Documentation]     Formats a currency string into an integer value
+    ...                 This keyword removes currency symbols, commas, space from product price
+    ...                 Arguments:
+    ...                     - ${currency_text}  (string):   The currency text to be formatted (e.g., ฿1,890.00).
+    ...                 Returns:
+    ...                     - ${number_value}  (number):   The number that was formatted (e.g., 1890.00)
+    [Arguments]     ${currency_text}
+    ${cleaned_text}     String.Remove string    ${currency_text}    THB     ,       ${SPACE}    \xa0
+    ${number_value}     BuiltIn.Convert to number    item=${cleaned_text}
+    RETURN          ${number_value}
+
+Format number to currency
+    [Arguments]     ${number}               ${decimal_place}=2
+    ${formatted_number}=    BuiltIn.Evaluate    f"{float($number):,.{int($decimal_place)}f}"
+    RETURN          ${formatted_number}
+
+Format number to baht currency without comma
+    [Documentation]     Formats a numeric value into a currency string format.
+    ...                 This keyword rounds the input number to 2 decimal places and prepends
+    ...                 the currency symbol (฿).
+    ...                 Arguments:
+    ...                     - ${number}             (string): The number to be formatted (e.g., 1890.5421).
+    ...                     - ${decimal_place}      (number): The amount of decimal place to be formatted (e.g., 4 default is 2).
+    ...                 Returns:
+    ...                     - ${formatted_number}   (string): The formatted currency string (e.g., ฿1890.54).
+    [Arguments]     ${number}               ${decimal_place}=2
+    ${formatted_number}=    BuiltIn.Evaluate    "฿{:.${decimal_place}f}".format(float('${number}'))
+    RETURN          ${formatted_number}
+
+Highlight elements
+    [Arguments]     ${locator}      ${duration}=${DEFAULT_HIGHLIGHT}
+    Browser.Highlight elements    selector=${locator}    duration=${duration}
+    BuiltIn.Sleep       time_=${duration}
+
+# not use
 Wait element visible then input
-    [Arguments]     ${locator}  ${text}     ${timeout}=${LONG_TIMEOUT}
+    [Arguments]     ${locator}      ${text}     ${timeout}=${LONG_TIMEOUT}
     # wait element
-    Browser.Wait For Elements State   ${locator}  timeout=${timeout}
+    Browser.Wait for elements state    ${locator}    timeout=${timeout}
     # input
-    Browser.Fill Text      ${locator}  ${text}
+    Browser.Fill text       ${locator}      ${text}
 
 Wait element visible then click
     [Arguments]     ${locator}      ${timeout}=${LONG_TIMEOUT}
     # wait element
-    Browser.Wait For Elements State   ${locator}  timeout=${timeout}
+    Browser.Wait for elements state    ${locator}    timeout=${timeout}
     # click
-    Browser.Click      ${locator}
+    Browser.Click       ${locator}
 
 Wait element visible then get text
-    [Arguments]     ${locator}      ${timeout}=${LONG_TIMEOUT}
-    Browser.Wait For Elements State   ${locator}  timeout=${timeout}
-    ${payment_result}    Browser.Get Text   ${locator}
-    RETURN      ${payment_result}
+    [Arguments]     ${locator}              ${timeout}=${LONG_TIMEOUT}
+    Browser.Wait for elements state    ${locator}    timeout=${timeout}
+    ${payment_result}       Browser.Get text    ${locator}
+    RETURN          ${payment_result}
 
 Wait page contain element then scroll to
     [Arguments]     ${locator}      ${timeout}=${LONG_TIMEOUT}
-    Browser.Wait For Elements State   ${locator}    state=attached   timeout=${timeout}
-    Browser.Scroll To Element        ${locator}
+    Browser.Wait for elements state    ${locator}    state=attached         timeout=${timeout}
+    Browser.Scroll to element    ${locator}
 
 Wait element visible then select option by value
-    [Arguments]     ${locator}  ${value}      ${timeout}=${LONG_TIMEOUT}
-    Browser.Wait For Elements State   ${locator}  timeout=${timeout}
-    Browser.Select Options By   ${locator}  value   ${value}
+    [Arguments]     ${locator}      ${value}    ${timeout}=${LONG_TIMEOUT}
+    Browser.Wait for elements state    ${locator}    timeout=${timeout}
+    Browser.Select options by    ${locator}         value                   ${value}
 
 Short sleep
-    BuiltIn.Sleep   3s
+    BuiltIn.Sleep       3s
