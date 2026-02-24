@@ -13,7 +13,7 @@ TC_E2E_001 - Verify new register customer can buy product successfully
     ${random_mobile_number}    common.Get random mobile number
     # start test case
     # Step 1 – Sign up → login
-    login_feature.Sign up with account data    full_name=${TC_E2E_001.user.full_name}               mobile_number=${random_mobile_number}           email=${generated_email}    password=${TC_E2E_001.user.password}
+    login_feature.Sign up with account data    full_name=${TC_E2E_001.user.full_name}                       mobile_number=${random_mobile_number}                       email=${generated_email}    password=${TC_E2E_001.user.password}
     # login_feature.Login with email and password    email=${TC_E2E_001.test_user.email}    password=${TC_E2E_001.test_user.password}
     # Step 2 – Ensure 8 suggested products are displayed (use loop + list + count)
     home_page.Verify suggested products are match with expect    expect_amount=${TC_E2E_001.home_page.suggest_product.amount}
@@ -66,8 +66,9 @@ TC_E2E_001 - Verify new register customer can buy product successfully
     ...                     cvv=${TC_E2E_001.payment.cvv}
     ...                     card_holder_name=${TC_E2E_001.payment.card_holder_name}
     checkout_page.Click place order button
-    ${order_number}     order_comfirm_page.Get order number
+    ${order_number}         order_comfirm_page.Get order number
     # Step 11 – Open Orders page and verify order summary is correct
     order_comfirm_page.Click view my order button
+    my_order_page.Verify total price of order number is match       order_id=${order_number}    expect_total_price=${expect_total_price}
     # Extra Test – Repeat with random products and pay via QR Code
-    Debug
+    debug

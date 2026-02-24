@@ -4,7 +4,7 @@ Click select all checkbox
 
 Get product total price by product name
     [Arguments]     ${product_name}
-    ${locator}      String.Replace string    string=${cart_locator.lbl_total_price_by_product_name}             search_for=@#string@#    replace_with=${product_name}
+    ${locator}      String.Replace string    string=${cart_locator.lbl_total_price_of_order_by_product_name}             search_for=@#string@#    replace_with=${product_name}
     ${price}        Browser.Get text    selector=${locator}
     RETURN          ${price}
 

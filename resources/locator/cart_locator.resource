@@ -1,6 +1,6 @@
 *** Variables ***
 ${cart_locator.chk_select_all}                      css=label > input[type="checkbox"] + span
-${cart_locator.lbl_total_price_by_product_name}     css=div:has(> div > [type=checkbox] + div > div:has-text("@#string@#")) > div > span
+${cart_locator.lbl_total_price_of_order_by_product_name}     css=div:has(> div > [type=checkbox] + div > div:has-text("@#string@#")) > div > span
 ${cart_locator.lbl_summary_by_text}                 css=span:text-is("@#string@#") + span
 ${cart_locator.ddl_coupon}                          css=button:has(+[aria-label="Remove Coupon"])
 ${cart_locator.txt_coupon}                          css=input:has(+[data-testid="cart-apply-coupon"])
