@@ -9,9 +9,9 @@ Change language
 
 Input search and click on suggest word
     [Arguments]     ${search_text}      ${suggest_text}
-    header_page.Input search text  text=${search_text}
-    ${locator}=    String.Replace string    string=${header_locator.txt_suggest_by_text}           search_for=@#string@#         replace_with=${suggest_text}
-    Browser.Click   selector=${locator}
+    header_page.Input search text    text=${search_text}
+    ${locator}=         String.Replace string    string=${header_locator.txt_suggest_by_text}                           search_for=@#string@#    replace_with=${suggest_text}
+    Browser.Click       selector=${locator}
 
 Click my account and click signin
     header_page.Click my account button

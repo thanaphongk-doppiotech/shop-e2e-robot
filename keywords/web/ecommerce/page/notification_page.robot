@@ -9,4 +9,4 @@ Verify notification message is display
     Browser.Wait for elements state                 selector=${locator}    state=visible
 
 Click close notification button
-    Browser.Click   selector=${notification_locator.btn_close_notification}
+    Browser.Click       selector=${notification_locator.btn_close_notification}

@@ -1,10 +1,10 @@
 *** Keywords ***
-
 Open website
     [Documentation]    Open base URL and ensure home is visible
-    Browser.New browser     headless=${HEADLESS}    slowMo=${DELAY}
+    Browser.New browser     headless=${HEADLESS}    slowMo=${DEFAULT_KEYWORD_DELAY}
     Browser.New context     locale=${LOCALE_EN}
     Browser.New page        ${LOCAL_URL}
+    BuiltIn.Set test variable    ${LOCALE}          ${LOCALE_EN}
 
 Test teardown
     Browser.Close browser
@@ -52,40 +52,6 @@ Format number to baht currency without comma
     RETURN          ${formatted_number}
 
 Highlight elements
-    [Arguments]     ${locator}      ${duration}=${DEFAULT_HIGHLIGHT}
+    [Arguments]     ${locator}      ${duration}=${DEFAULT_HIGHLIGHT_DURATION}
     Browser.Highlight elements    selector=${locator}    duration=${duration}
     BuiltIn.Sleep       time_=${duration}
-
-# not use
-Wait element visible then input
-    [Arguments]     ${locator}      ${text}     ${timeout}=${LONG_TIMEOUT}
-    # wait element
-    Browser.Wait for elements state    ${locator}    timeout=${timeout}
-    # input
-    Browser.Fill text       ${locator}      ${text}
-
-Wait element visible then click
-    [Arguments]     ${locator}      ${timeout}=${LONG_TIMEOUT}
-    # wait element
-    Browser.Wait for elements state    ${locator}    timeout=${timeout}
-    # click
-    Browser.Click       ${locator}
-
-Wait element visible then get text
-    [Arguments]     ${locator}              ${timeout}=${LONG_TIMEOUT}
-    Browser.Wait for elements state    ${locator}    timeout=${timeout}
-    ${payment_result}       Browser.Get text    ${locator}
-    RETURN          ${payment_result}
-
-Wait page contain element then scroll to
-    [Arguments]     ${locator}      ${timeout}=${LONG_TIMEOUT}
-    Browser.Wait for elements state    ${locator}    state=attached         timeout=${timeout}
-    Browser.Scroll to element    ${locator}
-
-Wait element visible then select option by value
-    [Arguments]     ${locator}      ${value}    ${timeout}=${LONG_TIMEOUT}
-    Browser.Wait for elements state    ${locator}    timeout=${timeout}
-    Browser.Select options by    ${locator}         value                   ${value}
-
-Short sleep
-    BuiltIn.Sleep       3s

@@ -11,18 +11,4 @@ ${cart_locator.btn_remove_elements}                         css=[id^="btn-remove
 ${cart_locator.btn_remove_by_index}                         css=[id^="btn-remove-"] >> nth=@#index@#
 ${cart_locator.lbl_list_product_total_price}                css=[id^="qty-"] + span
 ${cart_locator.lbl_price_of_total_price}                    css=span:has-text("@#string_locale@#") + span:has-text("@#price@#")
-${cart_locator.btn_confirm_remove}                                 css=p + div > .btn-ghost + .btn-danger
-
-# Fix me
-${cart_locator.cb_select_all}                               css=label:has(span:has-text("${REPLACE_TEXT}")) input[type="checkbox"]
-${cart_locator.replacable_price}                            css=span:text-is("${REPLACE_TEXT}") + span
-
-#${checkout_locator.btn_checkout}        css=[data-testid="go-checkout"]
-#${checkout_locator.chk_tick_all}        css=[data-testid="tick-all"]
-#${checkout_locator.txt_coupon}        css=[data-testid="coupon-input"]
-#${checkout_locator.btn_apply_coupon}    css=[data-testid="apply-coupon"]
-
-#${checkout_locator.lbl_subtotal}         css=[data-testid="subtotal"]
-# ${checkout_locator.lbl_discount}        css=[data-testid="discount"]
-# ${checkout_locator.lbl_shipping}        css=[data-testid="shipping"]
-# ${checkout_locator.lbl_total}           css=[data-testid="total"]
+${cart_locator.btn_confirm_remove}                          css=p + div > .btn-ghost + .btn-danger

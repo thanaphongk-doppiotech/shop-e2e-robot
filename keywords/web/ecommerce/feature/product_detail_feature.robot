@@ -32,7 +32,7 @@ Adjust quantity by number
 
 Add product to cart by random from homepage
     [Arguments]     ${retry_times}=10
-    ${is_done}=             Set variable        ${FALSE}
+    ${is_done}=             BuiltIn.Set variable    ${FALSE}
     WHILE    not ${is_done}    limit=${retry_times}
         header_page.Click doppee logo to go homepage
         home_page.Click on suggest product by random
@@ -40,13 +40,13 @@ Add product to cart by random from homepage
         IF    not ${is_out_of_stock}
             Run keyword and ignore error    product_detail_page.Select product color by index    index=0
             Run keyword and ignore error    product_detail_page.Select product size by index    index=0
-            ${qty}          String.Generate random string           length=1    chars=23
+            ${qty}          String.Generate random string    length=1    chars=23
             product_detail_feature.Adjust quantity by number    number=${qty}
             product_detail_page.Click add to cart button
             notification_page.Click close notification button
-            ${is_done}=     Set variable    ${TRUE}
+            ${is_done}=     BuiltIn.Set variable    ${TRUE}
         ELSE
             BuiltIn.Log     message=Product out of stock, trying next one...
         END
     END
-    Run keyword if          not ${is_done}      BuiltIn.Fail    Product is out of stock
+    Run keyword if          not ${is_done}          BuiltIn.Fail    Product is out of stock

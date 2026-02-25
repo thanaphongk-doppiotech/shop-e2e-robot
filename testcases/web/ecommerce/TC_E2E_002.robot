@@ -1,15 +1,11 @@
 *** Settings ***
 Resource            ${CURDIR}/../../../resources/import/common_import.resource
-Variables           ${CURDIR}/../../../resources/testdata/uat/web/ecommerce/TC_E2E_001.yaml
+Variables           ${CURDIR}/../../../resources/testdata/uat/web/ecommerce/TC_E2E_001_002.yaml
 Test Setup          common.Open website
 Test Teardown       common.Test teardown
 
 *** Test Cases ***
-debug
-    [Tags]      type:debug
-    Debug
-
-TC_E2E_002 - Verify new register customer can buy a random product successfully
+TC_E2E_002 - Verify customer can buy a random product successfully
     [Tags]      test_id:tc_e2e_002      platform:web    status:ready    test_type:smoke
     # prepare test data
     ${generated_email}      common.Get generated email
@@ -23,20 +19,20 @@ TC_E2E_002 - Verify new register customer can buy a random product successfully
     header_page.Click cart button
     cart_feature.Remove all item in cart
     # add random product
-    product_detail_feature.Add product to cart by random from homepage  retry_times=${DEFAULT_RETRY_TIMES}
+    product_detail_feature.Add product to cart by random from homepage    retry_times=${DEFAULT_RETRY_TIMES}
     # Change UI language to Thai
     header_feature.Change language    language=${LOCALE_TH}
     # add another second random product
-    product_detail_feature.Add product to cart by random from homepage  retry_times=${DEFAULT_RETRY_TIMES}
+    product_detail_feature.Add product to cart by random from homepage    retry_times=${DEFAULT_RETRY_TIMES}
     # add another third random product
-    product_detail_feature.Add product to cart by random from homepage  retry_times=${DEFAULT_RETRY_TIMES}
+    product_detail_feature.Add product to cart by random from homepage    retry_times=${DEFAULT_RETRY_TIMES}
     # go cart page, select all, add coupon and verify price on cart
     header_page.Click cart button
     cart_page.Click select all checkbox
     ${shipping_price}       cart_page.Get shipping price in cart summary
     ${actual_cart_total_price}    cart_feature.Calculate sum of each product in cart
-    ${expect_total_price}    BuiltIn.Evaluate    ${actual_cart_total_price} + ${shipping_price}
-    cart_page.Verify total price is match  expect_total_price=${expect_total_price}
+    ${expect_total_price}    BuiltIn.Evaluate       ${actual_cart_total_price} + ${shipping_price}
+    cart_page.Verify total price is match    expect_total_price=${expect_total_price}
     # increase first product qty
     cart_page.Press up arrow key to increase quantity by index    index=0
     # decrease last product qty
@@ -45,8 +41,8 @@ TC_E2E_002 - Verify new register customer can buy a random product successfully
     cart_page.Click remove button by product index    index=1
     ${shipping_price}       cart_page.Get shipping price in cart summary
     ${actual_cart_total_price}    cart_feature.Calculate sum of each product in cart
-    ${expect_total_price}    BuiltIn.Evaluate    ${actual_cart_total_price} + ${shipping_price}
-    cart_page.Verify total price is match  expect_total_price=${expect_total_price}
+    ${expect_total_price}    BuiltIn.Evaluate       ${actual_cart_total_price} + ${shipping_price}
+    cart_page.Verify total price is match    expect_total_price=${expect_total_price}
     # Apply coupon
     cart_page.Click coupon dropdown
     cart_page.Input coupon    coupon=${TC_E2E_001.coupon}
@@ -68,5 +64,4 @@ TC_E2E_002 - Verify new register customer can buy a random product successfully
     ${order_number}         order_comfirm_page.Get order number
     # verify price on my order page
     order_comfirm_page.Click view my order button
-    my_order_page.Verify total price of order number is match       order_id=${order_number}    expect_total_price=${expect_total_price}
-    debug
+    my_order_page.Verify total price of order number is match               order_id=${order_number}    expect_total_price=${expect_total_price}

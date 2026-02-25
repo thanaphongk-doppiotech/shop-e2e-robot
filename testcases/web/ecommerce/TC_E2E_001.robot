@@ -1,6 +1,6 @@
 *** Settings ***
 Resource            ${CURDIR}/../../../resources/import/common_import.resource
-Variables           ${CURDIR}/../../../resources/testdata/uat/web/ecommerce/TC_E2E_001.yaml
+Variables           ${CURDIR}/../../../resources/testdata/uat/web/ecommerce/TC_E2E_001_002.yaml
 Test Setup          common.Open website
 Test Teardown       common.Test teardown
 
@@ -30,7 +30,7 @@ TC_E2E_001 - Verify new register customer can buy product successfully
     # Step 6 – Change UI language to Thai
     header_feature.Change language    language=${LOCALE_TH}
     # Step 7 – Add 2× keyboard to cart
-    product_detail_page.Click product name to view detail    product_name=${TC_E2E_001.products.keyboard.name}
+    product_list_page.Click product name to view detail    product_name=${TC_E2E_001.products.keyboard.name}
     ${keyboard_price}       product_detail_page.Get product price
     product_detail_feature.Adjust quantity by number    number=${TC_E2E_001.products.keyboard.qty}
     product_detail_page.Select product color by color name    color_name=${TC_E2E_001.products.keyboard.color}
@@ -69,4 +69,3 @@ TC_E2E_001 - Verify new register customer can buy product successfully
     # Step 11 – Open Orders page and verify order summary is correct
     order_comfirm_page.Click view my order button
     my_order_page.Verify total price of order number is match       order_id=${order_number}    expect_total_price=${expect_total_price}
-    debug
