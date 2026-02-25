@@ -1,3 +1,2 @@
 *** Variables ***
-
-${product_list_locator.product_name}     css=[data-testid^="product-card-"] >> text="${REPLACE_TEXT}"
+${product_list_locator.lnk_product_by_name}     css=li[data-testid^="product-card-"] a:has-text("@#string@#")

@@ -32,10 +32,10 @@ Add new address if empty
     ${is_address_empty}     checkout_feature.Verify address is empty
     BuiltIn.Return from keyword if    ${is_address_empty}
     checkout_feature.Add new address
-    ...     first_name=${first_name}
-    ...     last_name=${last_name}
-    ...     addr_no=${addr_no}
-    ...     province=${province}
-    ...     district=${district}
-    ...     subdistrict=${subdistrict}
-    ...     is_default_addr=${is_default_addr}
+    ...                     first_name=${first_name}
+    ...                     last_name=${last_name}
+    ...                     addr_no=${addr_no}
+    ...                     province=${province}
+    ...                     district=${district}
+    ...                     subdistrict=${subdistrict}
+    ...                     is_default_addr=${is_default_addr}

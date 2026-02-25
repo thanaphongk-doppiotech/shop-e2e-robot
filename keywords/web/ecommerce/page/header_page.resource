@@ -8,13 +8,13 @@ Click my account button
 
 Input search text
     [Arguments]     ${text}
-    Browser.Fill text   selector=${header_locator.txt_search}     txt=${text}
+    Browser.Fill text       selector=${header_locator.txt_search}    txt=${text}
 
 Click search button
-    Browser.Click   selector=${header_locator.btn_search}
+    Browser.Click       selector=${header_locator.btn_search}
 
 Click cart button
-    Browser.Click   selector=${header_locator.btn_cart}
+    Browser.Click       selector=${header_locator.btn_cart}
 
 Click language button
-    Browser.Click   selector=${header_locator.btn_language}
+    Browser.Click       selector=${header_locator.btn_language}

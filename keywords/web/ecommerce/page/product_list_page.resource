@@ -1,11 +1,6 @@
 *** Keywords ***
-
-Scroll to product card by product name
+Click product name to view detail
     [Arguments]     ${product_name}
-    ${product_locator}=  String.Replace String   ${product_list_locator.product_name}     ${REPLACE_TEXT}     ${product_name}
-    common.Wait page contain element then scroll to  ${product_locator}
-
-Click product name to product details
-    [Arguments]     ${product_name}
-    ${product_locator}=  String.Replace String   ${product_list_locator.product_name}     ${REPLACE_TEXT}     ${product_name}
-    common.Wait element visible then click  ${product_locator}
+    ${locator}          String.Replace string    string=${product_list_locator.lnk_product_by_name}                     search_for=@#string@#    replace_with=${product_name}
+    Browser.Hover       selector=${locator}
+    Browser.Click       selector=${locator}

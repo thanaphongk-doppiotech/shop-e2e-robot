@@ -8,14 +8,3 @@ Verify total price of order number is match
     ${locator}      String.Replace string    string=${locator}      search_for=@#price@#    replace_with=${expect_total_price}
     Browser.Wait for elements state                 selector=${locator}    state=visible
     common.Highlight elements    locator=${locator}
-
-# Fix me
-Verify total price by order number
-    [Arguments]     ${order_no}     ${expect_total_price}
-    ${total_price_locator}=    String.Replace string                ${my_order_locator.lbl_total_price_of_order}    ${REPLACE_TEXT}         ${order_no}
-    ${total_price}=     common.Wait element visible then get text    ${total_price_locator}
-    ${total_price}=     String.Replace string    ${total_price}     THB\xa0                 ${EMPTY}
-    ${total_price}=     String.Replace string    ${total_price}     ,                       ${EMPTY}
-    ${abs_price} =      BuiltIn.Evaluate    abs(${total_price})
-    BuiltIn.Log to console    \nExpect price = ${expect_total_price}, actual price = ${total_price}
-    BuiltIn.Should be equal    ${expect_total_price}    ${abs_price}

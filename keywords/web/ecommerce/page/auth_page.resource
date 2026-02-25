@@ -1,5 +1,4 @@
 *** Keywords ***
-
 Click signup button
     Browser.Click       selector=${auth_locator.btn_signup}
 
