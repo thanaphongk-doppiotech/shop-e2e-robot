@@ -3,7 +3,7 @@ Open website
     [Documentation]    Open base URL and ensure home is visible
     Browser.New browser     headless=${HEADLESS}    slowMo=${DEFAULT_KEYWORD_DELAY}
     Browser.New context     locale=${LOCALE_EN}
-    Browser.New page        url=${BASE_URL}    # ${BASE_URL}   ${LOCAL_URL}
+    Browser.New page        url=${LOCAL_URL}    # ${BASE_URL}   ${LOCAL_URL}
     BuiltIn.Set test variable    ${LOCALE}          ${LOCALE_EN}
 
 Test teardown

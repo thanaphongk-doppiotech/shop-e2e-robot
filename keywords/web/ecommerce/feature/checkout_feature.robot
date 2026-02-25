@@ -22,7 +22,7 @@ Add new credit card
     checkout_page.Click add new credit card button
 
 Verify address is empty
-    ${product_elements}     Browser.Get elements    selector=${cart_locator.btn_remove_elements}
+    ${product_elements}     Browser.Get elements    selector=${checkout_locator.rdo_address_elements}
     ${product_elements_length}    BuiltIn.Get length    item=${product_elements}
     ${is_address_empty}     Builtin.Evaluate        ${product_elements_length} < 1
     RETURN      ${is_address_empty}
