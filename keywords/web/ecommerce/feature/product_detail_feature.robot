@@ -33,9 +33,10 @@ Adjust quantity by number
 Add product to cart by random from homepage
     [Arguments]     ${retry_times}=10
     ${is_done}=             BuiltIn.Set variable    ${FALSE}
-    WHILE    not ${is_done}    limit=${retry_times}
+    FOR     ${index}    IN RANGE    ${retry_times}
         header_page.Click doppee logo to go homepage
         home_page.Click on suggest product by random
+        # Browser.Go to   url=${LOCAL_URL}products/15
         ${is_out_of_stock}=     product_detail_page.Verify out of stock button is display
         IF    not ${is_out_of_stock}
             Run keyword and ignore error    product_detail_page.Select product color by index    index=0
@@ -45,6 +46,7 @@ Add product to cart by random from homepage
             product_detail_page.Click add to cart button
             notification_page.Click close notification button
             ${is_done}=     BuiltIn.Set variable    ${TRUE}
+            BuiltIn.Exit For Loop
         ELSE
             BuiltIn.Log     message=Product out of stock, trying next one...
         END
